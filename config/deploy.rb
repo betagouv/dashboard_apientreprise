@@ -61,6 +61,7 @@ set :shared_paths, [
                      'tmp/sockets',
                      'public/system',
                      'public/uploads',
+                     'config/initializers/secret_token.rb',
                      "config/initializers/uptime_robot.rb",
                      "config/unicorn.rb",
                      'config/initializers/mailjet.rb'
