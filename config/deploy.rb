@@ -61,8 +61,6 @@ set :shared_paths, [
                      'tmp/sockets',
                      'public/system',
                      'public/uploads',
-                     'config/database.yml',
-                     "config/environments/#{ENV['to']}.rb",
                      "config/initializers/uptime_robot.rb",
                      "config/unicorn.rb",
                      'config/initializers/mailjet.rb'
@@ -101,15 +99,6 @@ task :setup => :environment do
 
   queue! %[mkdir -p "#{deploy_to}/shared/config"]
   queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/config"]
-
-  queue! %[touch "#{deploy_to}/shared/config/database.yml"]
-  queue %[echo "-----> Be sure to edit 'shared/config/database.yml'."]
-
-  queue! %[touch "#{deploy_to}/shared/environments/production.rb"]
-  queue %[echo "-----> Be sure to edit 'shared/environments/production.rb'."]
-
-  queue! %[touch "#{deploy_to}/shared/environments/staging.rb"]
-  queue %[echo "-----> Be sure to edit 'shared/environments/staging.rb'."]
 end
 
 desc "Deploys the current version to the server."

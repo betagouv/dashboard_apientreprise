@@ -26,7 +26,6 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rspec'
-require 'database_cleaner'
 require 'webmock/rspec'
 require 'shoulda-matchers'
 require 'factory_girl'
@@ -37,19 +36,12 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: true, port: 44_678 + ENV['TEST_ENV_NUMBER'].to_i, phantomjs_options: ['--proxy-type=none'], timeout: 180)
 end
 
-
 Capybara.default_max_wait_time = 1
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 Dir[Rails.root.join('spec/factories/**/*.rb')].each { |f| require f }
-
-# Checks for pending migrations before tests are run.
-# If you are not using ActiveRecord, you can remove this line.
-ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
-
-DatabaseCleaner.strategy = :truncation
 
 SIADETOKEN = :valid_token unless defined? SIADETOKEN
 
@@ -70,7 +62,6 @@ RSpec.configure do |config|
   config.color = true
   config.infer_spec_type_from_file_location!
   config.tty = true
-
 
   config.use_transactional_fixtures = false
 
