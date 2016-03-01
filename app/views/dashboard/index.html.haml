@@ -1,0 +1,206 @@
+.cf-container.cf-nav-active
+  .row
+    .col-sm-6
+      .row
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                Date - Heure
+          .content
+            %br
+            %br
+            .cf-td
+              .cf-td-time.metric.center
+              .cf-td-dd
+                %p.cf-td-day.metric-small.center
+                %p.cf-td-date.metric-small.center
+
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          .content{style:'margin-top:35%'}
+            .cf-yn.yn-y
+              %h2 SGMAP
+
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                API Entreprise
+          .content
+            #APIENTREPRISE.cf-yn.yn-y
+              .metric
+                \...
+
+
+    .col-sm-6
+      .row
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                MPS
+          .content
+            #MPS.cf-yn.yn-y
+              .metric
+                \...
+
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                TPS
+          .content
+            #TPS.cf-yn.yn-y
+              .metric
+                \...
+
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                Disponibilité
+          #svp-1.content.cf-svp.clearfix
+            .chart{"data-layout" => "l-3", "data-percent" => "0"}
+            .metrics
+              %span.metric ...
+              %span.metric-small %
+
+
+
+  %br
+  .row
+    .col-sm-6
+      .row
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                Liens
+          .content
+            .cf-yn
+              %h3
+                %a{href:'https://apientreprise.fr', target: '_blank'}
+                  API
+              %h3
+                %a{href:'https://mps.apientreprise.fr', target: '_blank'}
+                  MPS
+              %h3
+                %a{href:'https://tps.apientreprise.fr', target: '_blank'}
+                  TPS
+
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          .content{style:'margin-top:35%'}
+            .cf-yn.yn-y
+              %h3 FOURNISSEURS
+
+
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                INSEE
+          .content
+            #INSEE.cf-yn
+              .metric
+                \...
+
+    .col-sm-6
+      .row
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                Qualibat
+          .content
+            #QUALIBAT.cf-yn.yn-y
+              .metric
+                \...
+
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                Infogreffe
+          .content
+            #INFOGREFFE.cf-yn.yn-y
+              .metric
+                \...
+
+        .col-sm-4.cf-item{:style => "height: 200px;"}
+          %header
+            %p
+              %span
+                Acoss
+          .content
+            #ACOSS.cf-yn
+              .metric
+                \...
+
+  %br
+  .row
+    .col-sm-6
+      .row
+        .col-sm-12
+          .row
+            .col-sm-6.cf-item{:style => "height: 315px;"}
+              %header
+                %p
+                  %span
+                    MPS - Total marchés
+              .content
+                .cf-svmc-sparkline
+                  .cf-svmc
+                    #MPS_TOTAL_MARCHES.metric ...
+                    %br
+                    %header
+                      %p
+                        %span
+                          Derniers mois
+                    .change.m-green.metric-small
+                      .arrow-up{style: 'margin-right: 10px'}
+                      %span#MPS_MARCHES_MOIS.medium ...
+                      %span.small marchés
+
+            .col-sm-6.cf-item{:style => "height: 315px;"}
+              %header
+                %p
+                  %span
+                    TPS - Total Dossiers
+              .content
+                .cf-svmc-sparkline
+                  .cf-svmc
+                    #TPS_TOTAL_DOSSIERS.metric ...
+                    %br
+                    %header
+                      %p
+                        %span
+                          Derniers mois
+                    .change.m-green.metric-small
+                      .arrow-up{style: 'margin-right: 10px'}
+                      %span#TPS_DOSSIERS_MOIS.medium ...
+                      %span.small dossiers
+    .col-sm-6
+      .row
+        .col-sm-12
+          .row
+            -#.col-sm-4.cf-item{:style => "height: 315px;"}
+            -#  %header
+            -#    %p
+            -#      %span
+            -#        MPS - Progression - 1 an
+            -#  .content
+            -#    .cf-svmc-sparkline
+            -#      .cf-svmc
+            -#        .metric 1477
+            -#        .change.m-green.metric-small
+            -#          .arrow-up
+            -#          %span.large
+            -#            32
+            -#            %span.small .45%
+            -#      .cf-sparkline.clearfix
+            -#        #spark-1.sparkline
+            -#        .sparkline-value{:style => "height: 133px;"}
+            -#          .metric-small
+
+
+
