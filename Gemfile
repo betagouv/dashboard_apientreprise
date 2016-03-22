@@ -35,6 +35,8 @@ gem 'unicorn'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem "highcharts-rails"
+
 group :test do
   gem 'capybara'
   gem 'factory_girl'
