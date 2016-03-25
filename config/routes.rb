@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       get 'taux_dispo'
     end
 
+    namespace 'elasticsearch' do
+      get 'requests_last_hour'
+    end
+
     namespace 'statistiques' do
       namespace 'dossiers' do
         resources 'tps', only: [:index]
