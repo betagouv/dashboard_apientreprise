@@ -27,7 +27,7 @@ class API::Elasticsearch::Driver
     RestClient::Resource.new(
         url,
         verify_ssl: verify_ssl_mode,
-        :headers => { "kbn-version": "4.4.1" }
+        :headers => {"kbn-version" => "4.4.1"}
     ).post params, :content_type => 'application/json'
   end
 

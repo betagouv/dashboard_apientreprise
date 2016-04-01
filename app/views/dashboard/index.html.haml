@@ -58,7 +58,7 @@
           %header
             %p
               %span
-                Disponibilité
+                Disponibilité (30J)
           #svp-1.content.cf-svp.clearfix
             .chart{"data-layout" => "l-3", "data-percent" => "0"}
             .metrics
@@ -155,7 +155,7 @@
                     %header
                       %p
                         %span
-                          Derniers mois
+                          30 derniers jours
                     .change.m-green.metric-small
                       .arrow-up{style: 'margin-right: 10px'}
                       %span#MPS_MARCHES_MOIS.medium ...
@@ -174,7 +174,7 @@
                     %header
                       %p
                         %span
-                          Derniers mois
+                          30 derniers jours
                     .change.m-green.metric-small
                       .arrow-up{style: 'margin-right: 10px'}
                       %span#TPS_DOSSIERS_MOIS.medium ...
@@ -183,25 +183,8 @@
       .row
         .col-sm-12
           .row
-            #container{ style: 'width:100%; height:315px;' }
-            -#.col-sm-4.cf-item{:style => "height: 315px;"}
-            -#  %header
-            -#    %p
-            -#      %span
-            -#        MPS - Progression - 1 an
-            -#  .content
-            -#    .cf-svmc-sparkline
-            -#      .cf-svmc
-            -#        .metric 1477
-            -#        .change.m-green.metric-small
-            -#          .arrow-up
-            -#          %span.large
-            -#            32
-            -#            %span.small .45%
-            -#      .cf-sparkline.clearfix
-            -#        #spark-1.sparkline
-            -#        .sparkline-value{:style => "height: 133px;"}
-            -#          .metric-small
+            #nb_call_apientreprise{ style: 'width:100%; height:315px;' }
+
 
 
 
