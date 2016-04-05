@@ -63,6 +63,7 @@ set :shared_paths, [
                      'public/uploads',
                      'config/initializers/secret_token.rb',
                      "config/initializers/uptime_robot.rb",
+                     "config/initializers/kibana.rb",
                      "config/unicorn.rb",
                      'config/initializers/mailjet.rb'
                  ]
