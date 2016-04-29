@@ -8,4 +8,8 @@ class Api::ElasticsearchController < ApplicationController
     render json: API::Elasticsearch::Adapter.monitor_last_requests
   end
 
+  def last_30_days_requests
+    render json: API::Elasticsearch::Adapter.monitor_last_30_days_requests
+  end
+
 end

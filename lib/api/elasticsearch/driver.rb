@@ -18,6 +18,21 @@ class API::Elasticsearch::Driver
     JSON.parse(call(url, query))
   end
 
+  def self.count_last_30_days_requests
+    url = base_url + '/elasticsearch/_msearch?timeout=0&ignore_unavailable=true'
+    now = DateTime.now
+    date_end = now.strftime('%Q').to_i
+    date_begin = (now - 30.days).strftime('%Q').to_i
+
+    today = Date.today
+    indexes = (today - 30 .. today).inject([]) { |init, date| init.push(date.strftime("logstash-%Y.%m.%d")) }
+
+    query = '{"index":' + indexes.to_s + ',"search_type":"count","ignore_unavailable":true}
+{"size":0,"aggs":{},"query":{"filtered":{"query":{"query_string":{"analyze_wildcard":true,"query":"controller:\"/api/v1/*\" -controller:\"/api/v1/ping\""}},"filter":{"bool":{"must":[{"range":{"@timestamp":{"gte":' + date_begin.to_s + ',"lte":' + date_end.to_s + ',"format":"epoch_millis"}}}],"must_not":[]}}}},"highlight":{"pre_tags":["@kibana-highlighted-field@"],"post_tags":["@/kibana-highlighted-field@"],"fields":{"*":{}},"require_field_match":false,"fragment_size":2147483647}}
+'
+
+    JSON.parse(call(url, query))
+  end
 
   private
 
@@ -36,3 +51,55 @@ class API::Elasticsearch::Driver
     "https://#{Kibana[:login]}:#{Kibana[:password]}@kibana.apientreprise.fr:443"
   end
 end
+
+{
+  "size": 0,
+  "aggs": {},
+  "query": {
+    "filtered": {
+      "query": {
+        "query_string": {
+          "analyze_wildcard": true,
+          "query": "controller:\"/api/v1/*\" -controller:\"/api/v1/ping\""
+        }
+      },
+      "filter": {
+        "bool": {
+          "must": [
+            {
+              "query": {
+                "query_string": {
+                  "analyze_wildcard": true,
+                  "query": "*"
+                }
+              }
+            },
+            {
+              "range": {
+                "@timestamp": {
+                  "gte": 1459339895228,
+                  "lte": 1461931895228,
+                  "format": "epoch_millis"
+                }
+              }
+            }
+          ],
+          "must_not": []
+        }
+      }
+    }
+  },
+  "highlight": {
+    "pre_tags": [
+      "@kibana-highlighted-field@"
+    ],
+    "post_tags": [
+      "@/kibana-highlighted-field@"
+    ],
+    "fields": {
+      "*": {}
+    },
+    "require_field_match": false,
+    "fragment_size": 2147483647
+  }
+}

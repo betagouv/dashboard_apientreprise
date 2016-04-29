@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     namespace 'elasticsearch' do
       get 'requests_last_hour'
       get 'last_requests'
+      get 'last_30_days_requests'
     end
 
     namespace 'statistiques' do

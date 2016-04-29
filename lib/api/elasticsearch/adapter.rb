@@ -18,6 +18,11 @@ class API::Elasticsearch::Adapter
     { x: time_range[:end], y: Hashie::Mash.new(json).responses[0].hits.total }
   end
 
+  def self.monitor_last_30_days_requests
+    json = API::Elasticsearch::Driver.count_last_30_days_requests
+    json['responses'][0]['hits']['total']
+  end
+
   def self.last_hour
     now = DateTime.now.strftime('%Q').to_i
     { begin: (now - 1800000), end: now }
