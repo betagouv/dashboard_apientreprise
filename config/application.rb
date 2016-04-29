@@ -30,5 +30,12 @@ module Dashboard
     # config.i18n.default_locale = :de
 
     config.autoload_paths += %W(#{config.root}/lib)
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '/api/stats/*', :headers => :any, :methods => [:get]
+      end
+    end
   end
 end
