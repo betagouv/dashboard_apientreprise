@@ -1,4 +1,4 @@
-class Api::ElasticsearchController < ApplicationController
+class Api::Stats::Apientreprise::ElasticsearchController < ApplicationController
 
   def requests_last_hour
     render json: API::Elasticsearch::Adapter.monitor_requests

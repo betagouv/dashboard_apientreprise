@@ -1,4 +1,4 @@
-class Api::Statistiques::Dossiers::MpsController < ApplicationController
+class Api::Stats::Mps::DossiersController < ApplicationController
   def index
     render json: API::MPS::Driver.dossiers_statistiques
   end

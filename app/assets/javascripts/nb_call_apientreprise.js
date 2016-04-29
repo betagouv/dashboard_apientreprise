@@ -69,7 +69,7 @@ $(document).ready(function() {
         series: [{}]
     };
 
-    var url =  '/api/elasticsearch/requests_last_hour';
+    var url =  '/api/stats/apientreprise/requests_last_hour';
     $.getJSON(url,  function(data) {
         options.series[0].data = data.data;
         chart = new Highcharts.Chart(options);
@@ -78,7 +78,7 @@ $(document).ready(function() {
 
 function get_last_requests() {
     $.ajax({
-        url: '/api/elasticsearch/last_requests',
+        url: '/api/stats/apientreprise/last_requests',
         success: function(point) {
             var series = chart.series[0],
                 shift = series.data.length > 60;

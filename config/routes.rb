@@ -22,10 +22,19 @@ Rails.application.routes.draw do
       get 'last_30_days_requests'
     end
 
-    namespace 'statistiques' do
-      namespace 'dossiers' do
-        resources 'tps', only: [:index]
-        resources 'mps', only: [:index]
+    namespace 'stats' do
+      namespace 'apientreprise' do
+        get 'requests_last_hour' => 'elasticsearch#requests_last_hour'
+        get 'last_requests' => 'elasticsearch#last_requests'
+        get 'last_30_days_requests' => 'elasticsearch#last_30_days_requests'
+      end
+
+      namespace 'mps' do
+        resources 'dossiers', only: [:index]
+      end
+
+      namespace 'tps' do
+        resources 'dossiers', only: [:index]
       end
     end
   end

@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe Api::Statistiques::Dossiers::MpsController, type: :controller do
+describe Api::Stats::Tps::DossiersController, type: :controller do
   before do
-    stub_request(:get, "https://mps.apientreprise.fr/api/statistiques/dossiers").
+    stub_request(:get, "https://tps.apientreprise.fr/api/statistiques/dossiers").
         to_return(:status => 200, :body => '{"total":330,"mois":90}', :headers => {})
   end
 

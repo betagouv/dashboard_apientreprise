@@ -1,7 +1,7 @@
 function total_dossiers_mps_check (){
 
     $.ajax({
-        url: '/api/statistiques/dossiers/mps',
+        url: '/api/stats/mps/dossiers',
         dataType: 'json',
         async: true
     }).done(function (data) {
@@ -13,7 +13,7 @@ function total_dossiers_mps_check (){
 function total_dossiers_tps_check (){
 
     $.ajax({
-        url: '/api/statistiques/dossiers/tps',
+        url: '/api/stats/tps/dossiers',
         dataType: 'json',
         async: true
     }).done(function (data) {

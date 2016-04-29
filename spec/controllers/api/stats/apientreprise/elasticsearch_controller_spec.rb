@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Api::ElasticsearchController, type: :controller do
+describe Api::Stats::Apientreprise::ElasticsearchController, type: :controller do
   before do
     stub_request(:post, "https://#{Kibana[:login]}:#{Kibana[:password]}@kibana.apientreprise.fr/elasticsearch/_msearch?ignore_unavailable=true&timeout=0").
       with(:body => "{\"index\":[\"logstash-#{Time.now.strftime("%Y.%m.%d")}\"],\"search_type\":\"count\",\"ignore_unavailable\":true}\n{\"query\":{\"filtered\":{\"query\":{\"query_string\":{\"query\":\"controller:\\\"/api/v1/*\\\"-controller:\\\"*ping*\\\"\",\"analyze_wildcard\":true}},\"filter\":{\"bool\":{\"must\":[{\"range\":{\"@timestamp\":{\"gte\":1458314870938,\"lte\":1458318470938,\"format\":\"epoch_millis\"}}}],\"must_not\":[]}}}},\"size\":0,\"aggs\":{\"2\":{\"date_histogram\":{\"field\":\"@timestamp\",\"interval\":\"15s\",\"time_zone\":\"Europe/Berlin\",\"min_doc_count\":0,\"extended_bounds\":{\"min\":1458314870938,\"max\":1458318470938}}}}}\n",
