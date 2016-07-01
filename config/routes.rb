@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'dashboard#index'
 
+  get "/ping" => "ping#index", :constraints => {:ip => /127.0.0.1/}
+
   namespace 'api' do
     namespace 'uptime' do
       get 'all'
