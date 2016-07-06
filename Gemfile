@@ -26,6 +26,8 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 
 gem 'haml-rails'
 
+gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
+
 gem 'rest-client'
 
 gem 'hashie'
