@@ -65,7 +65,8 @@ set :shared_paths, [
                      "config/initializers/uptime_robot.rb",
                      "config/initializers/kibana.rb",
                      "config/unicorn.rb",
-                     'config/initializers/mailjet.rb'
+                     'config/initializers/mailjet.rb',
+                     "config/initializers/raven.rb"
                  ]
 
 set :rbenv_path, "/usr/local/rbenv/bin/rbenv"
