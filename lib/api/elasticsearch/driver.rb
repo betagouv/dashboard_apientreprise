@@ -1,10 +1,12 @@
 class API::Elasticsearch::Driver
 
+  QUERY='controller:\"/api/v1/*\" controller:\"/api/v2/*\" -controller:\"/api/v1/ping\"'
+
   def self.count_last_requests_in_interval(interval, timestamp_begin, timestamp_end)
     url = base_url + '/elasticsearch/_msearch?timeout=0&ignore_unavailable=true'
     date = Time.now.strftime("%Y.%m.%d")
     query = '{"index":["logstash-' + date + '"],"search_type":"count","ignore_unavailable":true}
-{"query":{"filtered":{"query":{"query_string":{"query":"controller:\"/api/v1/*\"-controller:\"*ping*\"","analyze_wildcard":true}},"filter":{"bool":{"must":[{"range":{"@timestamp":{"gte":' + timestamp_begin.to_s + ',"lte":' + timestamp_end.to_s + ',"format":"epoch_millis"}}}],"must_not":[]}}}},"size":0,"aggs":{"2":{"date_histogram":{"field":"@timestamp","interval":"' + interval + '","time_zone":"Europe/Berlin","min_doc_count":0,"extended_bounds":{"min":' + timestamp_begin.to_s + ',"max":' + timestamp_end.to_i.to_s + '}}}}}
+{"query":{"filtered":{"query":{"query_string":{"query":"' + QUERY + '","analyze_wildcard":true}},"filter":{"bool":{"must":[{"range":{"@timestamp":{"gte":' + timestamp_begin.to_s + ',"lte":' + timestamp_end.to_s + ',"format":"epoch_millis"}}}],"must_not":[]}}}},"size":0,"aggs":{"2":{"date_histogram":{"field":"@timestamp","interval":"' + interval + '","time_zone":"Europe/Berlin","min_doc_count":0,"extended_bounds":{"min":' + timestamp_begin.to_s + ',"max":' + timestamp_end.to_i.to_s + '}}}}}
 '
     JSON.parse(call(url, query))
   end
@@ -13,7 +15,7 @@ class API::Elasticsearch::Driver
     url = base_url + '/elasticsearch/_msearch?timeout=0&ignore_unavailable=true'
     date = Time.now.strftime("%Y.%m.%d")
     query = '{"index":["logstash-' + date + '"],"search_type":"count","ignore_unavailable":true}
-{"size":0,"aggs":{},"query":{"filtered":{"query":{"query_string":{"analyze_wildcard":true,"query":"controller:\"/api/v1/*\" -controller:\"/api/v1/ping\""}},"filter":{"bool":{"must":[{"range":{"@timestamp":{"gte":' + timestamp_begin.to_s + ',"lte":' + timestamp_end.to_s + ',"format":"epoch_millis"}}}],"must_not":[]}}}},"highlight":{"pre_tags":["@kibana-highlighted-field@"],"post_tags":["@/kibana-highlighted-field@"],"fields":{"*":{}},"require_field_match":false,"fragment_size":2147483647}}
+{"size":0,"aggs":{},"query":{"filtered":{"query":{"query_string":{"analyze_wildcard":true,"query":"' + QUERY + '"}},"filter":{"bool":{"must":[{"range":{"@timestamp":{"gte":' + timestamp_begin.to_s + ',"lte":' + timestamp_end.to_s + ',"format":"epoch_millis"}}}],"must_not":[]}}}},"highlight":{"pre_tags":["@kibana-highlighted-field@"],"post_tags":["@/kibana-highlighted-field@"],"fields":{"*":{}},"require_field_match":false,"fragment_size":2147483647}}
 '
     JSON.parse(call(url, query))
   end
@@ -28,7 +30,7 @@ class API::Elasticsearch::Driver
     indexes = (today - 30 .. today).inject([]) { |init, date| init.push(date.strftime("logstash-%Y.%m.%d")) }
 
     query = '{"index":' + indexes.to_s + ',"search_type":"count","ignore_unavailable":true}
-{"size":0,"aggs":{},"query":{"filtered":{"query":{"query_string":{"analyze_wildcard":true,"query":"controller:\"/api/v1/*\" -controller:\"/api/v1/ping\""}},"filter":{"bool":{"must":[{"range":{"@timestamp":{"gte":' + date_begin.to_s + ',"lte":' + date_end.to_s + ',"format":"epoch_millis"}}}],"must_not":[]}}}},"highlight":{"pre_tags":["@kibana-highlighted-field@"],"post_tags":["@/kibana-highlighted-field@"],"fields":{"*":{}},"require_field_match":false,"fragment_size":2147483647}}
+{"size":0,"aggs":{},"query":{"filtered":{"query":{"query_string":{"analyze_wildcard":true,"query":"' + QUERY + '"}},"filter":{"bool":{"must":[{"range":{"@timestamp":{"gte":' + date_begin.to_s + ',"lte":' + date_end.to_s + ',"format":"epoch_millis"}}}],"must_not":[]}}}},"highlight":{"pre_tags":["@kibana-highlighted-field@"],"post_tags":["@/kibana-highlighted-field@"],"fields":{"*":{}},"require_field_match":false,"fragment_size":2147483647}}
 '
 
     JSON.parse(call(url, query))
