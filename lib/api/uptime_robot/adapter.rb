@@ -23,7 +23,8 @@ class API::UptimeRobot::Adapter
         :friendlyname,
         :url,
         :status,
-        :alltimeuptimeratio
+        :alltimeuptimeratio,
+        :customuptimeratio
     ]
   end
 end

@@ -12,6 +12,7 @@ class API::UptimeRobot::Driver
 
   def self.call(url, params = {})
     params.merge! api_key
+    params.merge! custom_uptime_ratio
 
     verify_ssl_mode = OpenSSL::SSL::VERIFY_NONE
 
@@ -32,5 +33,9 @@ class API::UptimeRobot::Driver
 
   def self.format
     {format: 'json'}
+  end
+
+  def self.custom_uptime_ratio
+    {customUptimeRatio: 30}
   end
 end

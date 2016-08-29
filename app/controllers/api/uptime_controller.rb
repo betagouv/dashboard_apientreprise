@@ -21,7 +21,7 @@ class Api::UptimeController < ApplicationController
   end
 
   def taux_dispo
-    render json: {taux_dispo: infos(:apientreprise)[:alltimeuptimeratio]}
+    render json: {taux_dispo: infos(:apientreprise)[:customuptimeratio]}
   end
 
   def acoss
