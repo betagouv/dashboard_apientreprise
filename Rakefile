@@ -21,7 +21,7 @@ end
 
 
 task :deploy_old do
-  domains = %w(37.187.154.237 37.187.249.111)
+  domains = %w(37.187.249.111)
   domains.each do |domain|
     sh "mina deploy domain=#{domain}"
   end
