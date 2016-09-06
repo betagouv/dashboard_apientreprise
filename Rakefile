@@ -6,7 +6,7 @@ require File.expand_path('../config/application', __FILE__)
 Rails.application.load_tasks
 
 task :deploy do
-  domains = %w(37.187.249.111 149.202.72.152 149.202.198.6)
+  domains = %w(149.202.220.111 149.202.72.152 149.202.198.6)
   domains.each do |domain|
     sh "mina deploy domain=#{domain}"
   end
@@ -14,14 +14,6 @@ end
 
 task :deploy_ha do
   domains = %w(149.202.72.152 149.202.198.6)
-  domains.each do |domain|
-    sh "mina deploy domain=#{domain}"
-  end
-end
-
-
-task :deploy_old do
-  domains = %w(37.187.249.111)
   domains.each do |domain|
     sh "mina deploy domain=#{domain}"
   end
