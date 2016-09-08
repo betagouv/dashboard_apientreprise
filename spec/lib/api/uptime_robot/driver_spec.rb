@@ -6,7 +6,7 @@ describe API::UptimeRobot::Driver do
     subject { described_class.monitors_status }
 
     before do
-      stub_request(:get, "https://api.uptimerobot.com/getMonitors?apiKey=#{UptimeRobot[:key]}&format=json").
+      stub_request(:get, "https://api.uptimerobot.com/getMonitors?apiKey=#{UptimeRobot[:key]}&customUptimeRatio=30&format=json&monitors=#{API::UptimeRobot::Driver.monitors[:monitors]}").
           to_return(:status => 200, :body => File.read('spec/supports/uptime_robot_response.json'), :headers => {})
 
       subject

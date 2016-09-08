@@ -3,6 +3,7 @@ class API::UptimeRobot::Driver
 
     url = base_url+'/getMonitors'
     params = format
+    params = params.merge monitors
 
     response = call url, params
     JSON.parse(response.gsub('jsonUptimeRobotApi(', '').gsub(')', ''))
@@ -22,7 +23,6 @@ class API::UptimeRobot::Driver
     ).get(params: params)
   end
 
-
   def self.base_url
     'https://api.uptimerobot.com'
   end
@@ -33,6 +33,10 @@ class API::UptimeRobot::Driver
 
   def self.format
     {format: 'json'}
+  end
+
+  def self.monitors
+    {monitors: (UptimeRobot[:monitors].inject([]){|acc, monitor| acc = acc + [monitor[1]] }).join('-')}
   end
 
   def self.custom_uptime_ratio

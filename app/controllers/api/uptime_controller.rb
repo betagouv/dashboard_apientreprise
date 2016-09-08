@@ -63,7 +63,7 @@ class Api::UptimeController < ApplicationController
   end
 
   def infos api
-    monitors.inject { |_, monitor| return monitor if monitor[:id] == UptimeRobot[:monitors][api] }
+     monitors.each { |monitor| return monitor if monitor[:id] == UptimeRobot[:monitors][api] }
   end
 
   def monitors
