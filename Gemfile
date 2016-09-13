@@ -52,6 +52,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'poltergeist'
   gem 'timecop'
+  gem 'brakeman', require: false
 end
 
 group :development, :test do
