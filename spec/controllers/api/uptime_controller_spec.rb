@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Api::UptimeController, type: :controller do
   before do
+
     stub_request(:get, "https://api.uptimerobot.com/getMonitors?apiKey=#{UptimeRobot[:key]}&customUptimeRatio=30&format=json&monitors=#{API::UptimeRobot::Driver.monitors[:monitors]}").
         to_return(:status => 200, :body => File.read('spec/supports/uptime_robot_response.json'), :headers => {})
   end
@@ -15,7 +16,7 @@ describe Api::UptimeController, type: :controller do
 
     it { expect(subject['acoss']).to eq 'UP' }
     it { expect(subject['infogreffe']).to eq 'UP' }
-    it { expect(subject['insee']).to eq 'UP' }
+    it { expect(subject['insee']).to eq 'PAUSED' }
     it { expect(subject['apientreprise']).to eq 'UP' }
     it { expect(subject['qualibat']).to eq 'UP' }
   end
@@ -25,7 +26,7 @@ describe Api::UptimeController, type: :controller do
       get :taux_dispo
     end
 
-    it { expect(subject['taux_dispo']).to eq '99.78' }
+    it { expect(subject['taux_dispo']).to eq '100' }
   end
 
   describe 'GET accoss' do
@@ -49,7 +50,7 @@ describe Api::UptimeController, type: :controller do
       get :insee
     end
 
-    it { expect(subject['status']).to eq 'UP' }
+    it { expect(subject['status']).to eq 'PAUSED' }
   end
 
   describe 'GET apientreprise' do

@@ -20,7 +20,7 @@ describe API::UptimeRobot::Adapter do
       it { expect(subject[:friendlyname]).to eq 'API - API Entreprise' }
       it { expect(subject[:url]).not_to be_nil }
       it { expect(subject[:status]).to eq '2' }
-      it { expect(subject[:alltimeuptimeratio]).to eq '99.78' }
+      it { expect(subject[:alltimeuptimeratio]).to eq '100' }
     end
   end
 end
