@@ -54,16 +54,16 @@ class Api::UptimeController < ApplicationController
 
   private
 
-  def render_json_status api
+  def render_json_status(api)
     render json: {status: status(api)}
   end
 
-  def status api
+  def status(api)
     STATUS[infos(api)[:status]] || 'NULL'
   end
 
-  def infos api
-     monitors.each { |monitor| return monitor if monitor[:id] == UptimeRobot[:monitors][api] }
+  def infos(api)
+    monitors.select{ |monitor| monitor[:id] == UptimeRobot[:monitors][api] }.first || {}
   end
 
   def monitors

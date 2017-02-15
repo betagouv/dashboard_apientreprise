@@ -40,7 +40,7 @@ describe API::Elasticsearch::Adapter do
       allow(DateTime).to receive(:now).and_return(DateTime.strptime("1461935563084",'%Q'))
       today = Date.today
       indexes = (today - 30 .. today).inject([]) { |init, date| init.push(date.strftime("logstash-%Y.%m.%d")) }
-      stub_request(:post, "https://kibana:kibana2015forsgmap@kibana.apientreprise.fr/elasticsearch/_msearch?ignore_unavailable=true&timeout=0").
+      stub_request(:post, "https://#{Kibana[:login]}:#{Kibana[:password]}@kibana.apientreprise.fr/elasticsearch/_msearch?ignore_unavailable=true&timeout=0").
         with(:body => "{\"index\":#{indexes.to_s},\"search_type\":\"count\",\"ignore_unavailable\":true}\n{\"size\":0,\"aggs\":{},\"query\":{\"filtered\":{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"controller:\\\"/api/v1/*\\\" controller:\\\"/api/v2/*\\\" -controller:\\\"/api/v1/ping\\\"\"}},\"filter\":{\"bool\":{\"must\":[{\"range\":{\"@timestamp\":{\"gte\":1459343563084,\"lte\":1461935563084,\"format\":\"epoch_millis\"}}}],\"must_not\":[]}}}},\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}\n",
              :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Length'=>'1263', 'Content-Type'=>'application/json', 'Kbn-Version'=>'4.4.1', 'User-Agent'=>'Ruby'}).
         to_return(:status => 200, :body => File.read('spec/supports/elasticsearch_last_30_days_requests_response.json'), :headers => {})
