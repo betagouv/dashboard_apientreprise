@@ -13,7 +13,7 @@ task :deploy do
 end
 
 task :deploy_ha do
-  domains = %w(149.202.72.152 149.202.198.6 149.202.220.111)
+  domains = %w(149.202.220.111)
   domains.each do |domain|
     sh "mina deploy domain=#{domain}"
   end
