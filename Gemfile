@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.10'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -28,7 +28,7 @@ gem 'haml-rails'
 
 gem "sentry-raven", :git => "https://github.com/getsentry/raven-ruby.git"
 
-gem 'rest-client'
+gem 'rest-client', '~> 1.8.x'
 
 gem 'hashie'
 
@@ -70,7 +70,7 @@ group :development, :test do
 
   gem 'railroady'
 
-  gem 'mina', git: 'https://github.com/mina-deploy/mina.git'
+  gem 'mina', '= 0.3.8'
 end
 
 group :development do
