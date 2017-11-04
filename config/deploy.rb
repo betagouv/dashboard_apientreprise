@@ -13,8 +13,6 @@ require 'mina/rbenv' # for rbenv support. (http://rbenv.org)
 ENV['to'] ||= "staging"
 ENV['to'] = "staging" unless ["staging", "production"].include?(ENV['to'])
 
-raise "missing domain, run with 'rake deploy domain=37.187.154.237'" if ENV['domain'].nil?
-
 print "Deploy to #{ENV['to']} environment branch #{branch}\n"
 
 # set :domain, '5.135.190.60'
